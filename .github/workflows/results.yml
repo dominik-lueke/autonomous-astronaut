@@ -31,7 +31,7 @@ jobs:
           echo "APP_HOST=${{ vars.APP_HOST }}" >> $GITHUB_ENV
 
       - name: Call Netlify function with API key
-        if: ${{ github.event_name == 'workflow_dispatch' || github.environment == 'prod' }}
+        if: ${{ github.event_name == 'workflow_dispatch' || job.environment == 'prod' }}
         run: |
           echo "Calling Netlify function on $APP_HOST..."
           curl -s -f -w "\nHTTP status: %{http_code}\n" \
